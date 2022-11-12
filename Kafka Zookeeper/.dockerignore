@@ -1,0 +1,7 @@
+.dockerignore
+docker-compose.yaml
+.git
+README.md
+*.pyc
+__pycache__
+mongo-volume*

@@ -1,0 +1,100 @@
+version: "3.8"
+
+networks:
+  application_network:
+    external: true
+    name: p02_application_network
+
+services:  
+  sub1:
+    container_name: sub1
+    build: 
+      context: Subscriber/
+      dockerfile: Dockerfile
+    image: subscriber
+    command: flask run --host=0.0.0.0
+    ports:
+      - '5001:5000'
+    networks:
+      - application_network
+
+  sub2:
+    container_name: sub2
+    image: subscriber
+    command: flask run --host=0.0.0.0
+    ports:
+      - '5002:5000'
+    networks:
+      - application_network
+
+  sub3:
+    container_name: sub3
+    image: subscriber
+    command: flask run --host=0.0.0.0
+    ports:
+      - '5003:5000'
+    networks:
+      - application_network
+
+  sub4:
+    container_name: sub4
+    image: subscriber
+    command: flask run --host=0.0.0.0
+    ports:
+      - '5004:5000'
+    networks:
+      - application_network
+
+  sub5:
+    container_name: sub5
+    image: subscriber
+    command: flask run --host=0.0.0.0
+    ports:
+      - '5005:5000'
+    networks:
+      - application_network
+
+  sub6:
+    container_name: sub6
+    image: subscriber
+    command: flask run --host=0.0.0.0
+    ports:
+      - '5006:5000'
+    networks:
+      - application_network
+
+  sub7:
+    container_name: sub7
+    image: subscriber
+    command: flask run --host=0.0.0.0
+    ports:
+      - '5007:5000'
+    networks:
+      - application_network
+
+  sub8:
+    container_name: sub8
+    image: subscriber
+    command: flask run --host=0.0.0.0
+    ports:
+      - '5008:5000'
+    networks:
+      - application_network
+
+  sub9:
+    container_name: sub9
+    image: subscriber
+    command: flask run --host=0.0.0.0
+    ports:
+      - '5009:5000'
+    networks:
+      - application_network
+
+  sub10:
+    container_name: sub10
+    image: subscriber
+    command: flask run --host=0.0.0.0
+    ports:
+      - '50010:5000'
+    networks:
+      - application_network

@@ -1,0 +1,56 @@
+version: "3.8"
+
+networks:
+  middleware_network:
+    external: true
+    name: phase3_middleware_network
+
+volumes:
+  sub1Vol:
+  sub2Vol:
+  sub3Vol:
+
+services:  
+  sub1:
+    container_name: sub1
+    build: 
+      context: suscriber/
+      dockerfile: Dockerfile
+    command: flask run --host=0.0.0.0
+    volumes:
+      - sub1Vol:/ingest/
+    networks:
+      - middleware_network
+    ports:
+      - '5001:5000'
+    restart: always
+
+  sub2:
+    container_name: sub2
+    build: 
+      context: suscriber/
+      dockerfile: Dockerfile
+    command: flask run --host=0.0.0.0
+    volumes:
+      - sub2Vol:/ingest/
+    networks:
+      - middleware_network
+    ports:
+      - '5002:5000'
+    restart: always
+
+  sub3:
+    container_name: sub3
+    build: 
+      context: suscriber/
+      dockerfile: Dockerfile
+    command: flask run --host=0.0.0.0
+    volumes:
+      - sub3Vol:/ingest/
+    networks:
+      - middleware_network
+    ports:
+      - '5003:5000'
+    restart: always
+
+  

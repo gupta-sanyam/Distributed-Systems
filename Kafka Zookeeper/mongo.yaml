@@ -1,0 +1,23 @@
+version: "3.8"
+
+networks:
+  middleware_network:
+
+volumes:
+  mngVol:
+
+services:  
+  database:
+    image: mongo:4.2
+    container_name: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=phase1
+      - MONGO_INITDB_ROOT_USERNAME=superAdmin
+      - MONGO_INITDB_ROOT_PASSWORD=shiaph3wur3XooR
+    volumes:
+      - mngVol:/data/db
+    ports:
+      - '27017-27019:27017-27019'
+    networks:
+      - middleware_network

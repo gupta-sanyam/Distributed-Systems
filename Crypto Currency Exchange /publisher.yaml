@@ -1,0 +1,35 @@
+version: "3.8"
+
+networks:
+  application_network:
+    external: true
+    name: p02_application_network
+
+services:
+  publisher1:
+    container_name: Coinbase
+    build:
+      context: Publisher/
+      dockerfile: Dockerfile-publisher1
+    command: tail -f /dev/null
+    restart: always
+    networks:
+      - application_network
+  publisher2:
+    container_name: Binance
+    build:
+      context: Publisher/
+      dockerfile: Dockerfile-publisher2
+    command: tail -f /dev/null
+    restart: always
+    networks:
+      - application_network
+  publisher3:
+    container_name: Gemini
+    build:
+      context: Publisher/
+      dockerfile: Dockerfile-publisher3
+    command: tail -f /dev/null
+    restart: always
+    networks:
+      - application_network 

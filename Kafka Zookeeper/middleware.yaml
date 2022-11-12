@@ -1,0 +1,53 @@
+version: "3.8"
+
+networks:
+  middleware_network:
+    external: true
+    name: phase3_middleware_network
+
+services:
+  broker3:
+    container_name: BROKER3
+    build: 
+      context: Middleware/
+      dockerfile: Dockerfile
+    image: middleware-phase3
+    command: flask run --host=0.0.0.0
+    ports:
+      - '20000:5000'
+    environment:
+      ID: BROKER3
+    volumes:
+      - ./Middleware/:/ingest/
+    networks:
+      - middleware_network
+
+  broker1:
+    container_name: BROKER1
+    image: middleware-phase3
+    command: flask run --host=0.0.0.0
+    depends_on:
+      - broker3
+    ports:
+      - '20001:5000'
+    environment:
+      ID: BROKER1
+    volumes:
+      - ./Middleware/:/ingest/
+    networks:
+      - middleware_network
+
+  broker2:
+    container_name: BROKER2
+    image: middleware-phase3
+    command: flask run --host=0.0.0.0
+    depends_on:
+      - broker1
+    ports:
+      - '20002:5000'
+    environment:
+      ID: BROKER2
+    volumes:
+      - ./Middleware/:/ingest/
+    networks:
+      - middleware_network

@@ -1,0 +1,37 @@
+version: "3.8"
+
+networks:
+  middleware_network:
+    external: true
+    name: phase3_middleware_network
+
+services:
+  publisher1:
+    container_name: publisher1
+    build: 
+      context: Publisher/
+      dockerfile: Dockerfile-publisher1
+    command: tail -f /dev/null
+    restart: always
+    networks:
+      - middleware_network
+
+  publisher2:
+    container_name: publisher2
+    build: 
+      context: Publisher/
+      dockerfile: Dockerfile-publisher2
+    command: tail -f /dev/null
+    restart: always
+    networks:
+      - middleware_network
+
+  publisher3:
+    container_name: publisher3
+    build: 
+      context: Publisher/
+      dockerfile: Dockerfile-publisher3
+    command: tail -f /dev/null
+    restart: always
+    networks:
+      - middleware_network

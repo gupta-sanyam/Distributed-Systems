@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script type="text/javascript">
+ window.onload = function() {
+  document.getElementById("subscribe").onclick = function fun() {
+
+ var x = document.forms["myForm"]["subId"].value; 
+ var y = document.forms["myForm"]["topic"].value;  
+ var ip;
+ if (x == "sub1") {
+  ip = "127.0.0.1:5001";
+ }else if (x == "sub2") {
+  ip = "127.0.0.1:5002";
+ }else if (x == "sub3") {
+  ip = "127.0.0.1:5003";
+ }else if (x == "sub4") {
+  ip = "127.0.0.1:5004";
+ }else if (x == "sub5") {
+  ip = "127.0.0.1:5005";
+ }else if (x == "sub6") {
+  ip = "127.0.0.1:5006";
+ }else if (x == "sub7") {
+  ip = "127.0.0.1:5007";
+ }else if (x == "sub8") {
+  ip = "127.0.0.1:5008";
+ }else if (x == "sub9") {
+  ip = "127.0.0.1:5009";
+ }else if (x == "sub10") {
+  ip = "127.0.0.1:50010";
+ }
+
+ var obj = JSON.stringify({"ID": x, "IP": x, "Topic": y});
+
+ var Url = "http://"+ip+"/subscriber/subscribe";
+ 
+ var xhr = new XMLHttpRequest();
+
+ console.log(Url);
+ 
+ xhr.open("POST", Url, true);
+ 
+ xhr.setRequestHeader("Content-Type", "application/json");
+ 
+ xhr.send(obj);
+ 
+ confirm(y + " "+"Subscribed!");
+ xhr.onreadystatechange =  function () {
+ // alert(xhr.responseText.headers.Host);
+ if (xhr.readyState === 4 && xhr.status === 200) {
+        document.getElementById("data").innerHTML = xhr.responseText;
+        //console.log(json);
+   
+ };
+  
+//console.log("Nothing");
+}}}
+</script>
+
+
+</head>
+<body>
+<center>
+ Subscribe Portal
+<br><br> 
+
+<form name="myForm">
+  <label for="subId">Subscriber's Id:</label>
+  <input type="text" name="subId"/><br><br>
+  <label for="topic">Topic Name:</label>
+  <input type="text"  name="topic"/><br><br>
+ <input type="button" id="subscribe" onclick="f1()" value="Subscribe"/>
+</form>
+
+ 
+ 
+ </table>
+ </center>
+</body>
+</html>
